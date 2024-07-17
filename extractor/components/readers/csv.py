@@ -12,4 +12,8 @@ class CsvReader(DocumentReader):
     def read(self, file_path: str) -> DocumentData:
         df = pd.read_csv(file_path)
         text = df.to_string()
-        return DocumentData(text=text, file_path=file_path, file_extension='.csv', metadata={}, images=[])
+        return self._create_document_data(
+            text=text,
+            file_path=file_path,
+            file_extension=".csv",
+        )

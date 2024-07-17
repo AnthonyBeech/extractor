@@ -17,4 +17,10 @@ class TiffReader(DocumentReader):
         image = Image.open(file_path)
         image_np = np.array(image)  # Convert to numpy array
         text = reader.readtext(image_np, detail=0)
-        return DocumentData(text="\n".join(text), file_path=file_path, file_extension=os.path.splitext(file_path)[1], metadata={}, images=[image_np])
+        
+        return self._create_document_data(
+            text="\n".join(text),
+            file_path=file_path,
+            file_extension=os.path.splitext(file_path)[1],
+            images=[image_np]
+        )

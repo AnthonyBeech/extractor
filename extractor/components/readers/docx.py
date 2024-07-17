@@ -21,4 +21,10 @@ class DocxReader(DocumentReader):
                 img = rel.target_part.blob
                 image = Image.open(io.BytesIO(img))
                 images.append(np.array(image))
-        return DocumentData(text=text, file_path=file_path, file_extension='.docx', metadata={}, images=images)
+                
+        return self._create_document_data(
+            text=text,
+            file_path=file_path,
+            file_extension=".docx",
+            images=images,
+        )

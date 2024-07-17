@@ -15,5 +15,11 @@ class ImageReader(DocumentReader):
     def read(self, file_path: str) -> DocumentData:
         reader = easyocr.Reader(['en'])
         image = Image.open(file_path)
-        text = reader.readtext(image, detail=0)
-        return DocumentData(text="\n".join(text), file_path=file_path, file_extension=os.path.splitext(file_path)[1], metadata={}, images=[np.array(image)])
+        image_np = np.array(image)  # Convert to numpy array
+        text = reader.readtext(image_np, detail=0)
+        return self._create_document_data(
+            text="\n".join(text),
+            file_path=file_path,
+            file_extension=os.path.splitext(file_path)[1],
+            images=[image_np]
+        )
