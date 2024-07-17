@@ -1,0 +1,10 @@
+pandas
+numpy
+matplotlib
+tqdm
+easyocr
+pdfplumber
+python-docx
+beautifulsoup4
+python-pptx
+nltk
